@@ -15,6 +15,7 @@ public class BichoControl : MonoBehaviour
 	public float velocidad = 2;
 	public Estados estado;
 	float tiempoAtacar;
+	public float distanciaAtacar;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class BichoControl : MonoBehaviour
 		//	}
 		//}
 		Invoke("Morir", 30f);
-		target = Control.singleton.Personaje;
+		target = Objetivo.singleton.transform;
 		StartCoroutine(CambioEstados());
 	}
 
@@ -43,12 +44,12 @@ public class BichoControl : MonoBehaviour
 				if (estado == Estados.idle)
 				{
 					estado = Estados.seguir;
-					animator.SetBool("Walk Forward", true);
+					animator.SetBool("CaminarAdelante", true);
 				}
 				else
 				{
 					estado = Estados.idle;
-					animator.SetBool("Walk Forward", false);
+					animator.SetBool("CaminarAdelante", false);
 				}
 			}
 		}
@@ -61,7 +62,7 @@ public class BichoControl : MonoBehaviour
 			return;
 		}
 		vivo = false;
-		animator.SetTrigger("Die");
+		animator.SetTrigger("Muerte");
 		Destroy(gameObject, 10);
 		audioMuerte.Play();
 		estado = Estados.muerto;
@@ -79,7 +80,7 @@ public class BichoControl : MonoBehaviour
             vida--;
 			if (vida > 0)
 			{
-                animator.SetTrigger("Take Damage");
+                animator.SetTrigger("RecibirDaño");
                 audioGolpe.Play();
 			}
 			else
@@ -102,10 +103,10 @@ public class BichoControl : MonoBehaviour
 				transform.LookAt(nDirMirar, Vector3.up);
 				transform.rotation = Quaternion.Lerp(rotacion, transform.rotation, Time.deltaTime);
 				transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-				if ((transform.position - nDirMirar).sqrMagnitude < 0.8f)
+				if ((transform.position - nDirMirar).sqrMagnitude < distanciaAtacar)
 				{
 					estado = Estados.atacando;
-					animator.SetBool("Walk Forward", false);
+					animator.SetBool("CaminarAdelante", false);
 				}
 				break;
 			case Estados.muerto:
@@ -116,11 +117,11 @@ public class BichoControl : MonoBehaviour
 				if ((transform.position - nDirMirar2).sqrMagnitude > 1.3f)
 				{
 					estado = Estados.seguir;
-					animator.SetBool("Walk Forward", true);
+					animator.SetBool("CaminarAdelante", true);
 				}
 				if (Time.time > tiempoAtacar)
 				{
-					animator.SetTrigger("Smash Attack");
+					animator.SetTrigger("Atacar");
 					tiempoAtacar = Time.time + 1;
 				}
 				break;
