@@ -8,7 +8,7 @@ public class Pistola : MonoBehaviour
     public float velocidad = 5;
     public ParticleSystem particulas;
     public AudioSource sonido;
-
+    public Animator animacionDisparo;
     void Update()
     {
 		if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
@@ -19,6 +19,7 @@ public class Pistola : MonoBehaviour
             disparoRB.velocity = transform.forward*velocidad;
             particulas.Play();
             sonido.Play();
+            animacionDisparo.SetTrigger("Disparar");
 		}
     }
 }
