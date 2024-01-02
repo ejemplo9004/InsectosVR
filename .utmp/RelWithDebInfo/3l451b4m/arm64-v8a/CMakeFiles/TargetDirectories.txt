@@ -1,0 +1,5 @@
+D:/Proyectos/Unity/Quest 3 Prueba 2/.utmp/RelWithDebInfo/3l451b4m/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Proyectos/Unity/Quest 3 Prueba 2/.utmp/RelWithDebInfo/3l451b4m/arm64-v8a/CMakeFiles/rebuild_cache.dir
+D:/Proyectos/Unity/Quest 3 Prueba 2/.utmp/RelWithDebInfo/3l451b4m/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/Proyectos/Unity/Quest 3 Prueba 2/.utmp/RelWithDebInfo/3l451b4m/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+D:/Proyectos/Unity/Quest 3 Prueba 2/.utmp/RelWithDebInfo/3l451b4m/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
